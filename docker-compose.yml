@@ -1,0 +1,30 @@
+version: '3.4'
+services:
+    weaviate:
+        command:
+            - --host
+            - 0.0.0.0
+            - --port
+            - '8080'
+            - --scheme
+            - http
+        image: semitechnologies/weaviate:1.20.5
+        ports:
+            - 8080:8080
+        restart: on-failure:0
+        environment:
+            HUGGINGFACE_APIKEY: $HUGGINGFACE_APIKEY
+            QUERY_DEFAULTS_LIMIT: 25
+            PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+            DEFAULT_VECTORIZER_MODULE: 'text2vec-huggingface'
+            ENABLE_MODULES: 'text2vec-huggingface'
+            CLUSTER_HOSTNAME: 'node1'
+            AUTHENTICATION_APIKEY_ENABLED: true
+            AUTHENTICATION_APIKEY_ALLOWED_KEYS: $WEAVIATE_SECRET_KEY
+            AUTHENTICATION_APIKEY_USERS: $WEAVIATE_USER
+            LOG_LEVEL: 'debug'
+        volumes:
+            - weaviate_data:/var/lib/weaviate
+
+volumes:
+    weaviate_data:

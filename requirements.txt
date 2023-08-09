@@ -1,0 +1,5 @@
+langchain
+sentence_transformers
+weaviate-client
+pandas
+python-env
