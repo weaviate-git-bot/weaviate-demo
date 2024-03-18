@@ -57,7 +57,7 @@ You have a `docker-compose` file for the Weaviate service. If you want to deploy
        spec:
          containers:
            - name: weaviate
-             image: semitechnologies/weaviate:1.20.5
+             image: cr.weaviate.io/semitechnologies/weaviate:1.20.5
              ports:
              - containerPort: 8080
              env:
